@@ -1,0 +1,14 @@
+{
+  "name": "FileMorph — Local File Converter",
+  "short_name": "FileMorph",
+  "description": "Convert images, documents, archives and media entirely inside your browser. No cloud, no uploads, no tracking.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080a0c",
+  "theme_color": "#080a0c",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
