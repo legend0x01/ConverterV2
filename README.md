@@ -1,73 +1,69 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# FileMorph
 
-Currently, two official plugins are available:
+### Convert any file. 100% local. Zero cloud uploads.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](./LICENSE)
+![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss&logoColor=white)
 
-## React Compiler
+![FileMorph home page](screenshots/home.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Overview
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+FileMorph converts images, documents, archives and media **entirely in your browser**. Files are processed in a Web Worker on your own machine. No server receives the bytes, nothing is queued in the cloud, and nothing remains after you close the tab.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Four local engines:** image, document, archive and media
+- **30+ formats**, listed in a formats matrix
+- **Drag-and-drop** file input
+- **Runs in a Web Worker**, so the page stays responsive during conversion
+- **Outbound request ledger:** a live log showing that no file data leaves the browser
+- **Session log** and live security monitor
+- **Works offline:** installable as a PWA with a service worker
+- **Archive output** as ZIP or TAR
+
+## Tech stack
+
+| Area | Tools |
+| --- | --- |
+| UI | React 19, TypeScript, Tailwind CSS 4, Framer Motion, Lucide icons |
+| Build | Vite 7 |
+| Routing | React Router 7 |
+| Conversion | pdf.js, jsPDF, JSZip, fflate, lamejs (MP3), custom GIF and TAR encoders |
+| Offline | Web App Manifest and service worker |
+
+## Getting started
+
+```bash
+git clone https://github.com/legend0x01/ConverterV2.git
+cd ConverterV2
+npm install
+npm run dev       # start the dev server
+npm run build     # production build in dist/
+npm run preview   # preview the production build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/   # Hero, Converter, Dropzone, FormatsMatrix, NetworkLedger, ...
+├── pages/        # Home, Formats, Privacy, Tech
+├── lib/convert/  # Image, document, archive and media engines
+├── workers/      # convert.worker.ts (runs conversions off the main thread)
+└── main.tsx
+public/           # Icons, manifest, service worker
+```
+
+## License
+
+Released under the [MIT License](LICENSE).
